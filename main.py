@@ -2,6 +2,8 @@
 
 from argparse import ArgumentParser
 
+import cv2
+
 from responsive_voice.voices import UKEnglishMale
 
 from inference import FaceDetection, MaskDetection
@@ -131,9 +133,10 @@ def main(args):
         for frame in input_feed.next_frame():
             count += 1
 
+            #face_detect_infer_time, face_bboxes = face_detection.predict(frame, show_bbox=args.show_bbox)
+
             fd_results = face_detection.predict(
-                frame, show_bbox=args.show_bbox, mask_detected=mask_detected_prob
-            )
+                frame, show_bbox=args.show_bbox, mask_detected=mask_detected_prob)     
             face_bboxes = fd_results["process_output"]["bbox_coord"]
             if face_bboxes:
                 for face_bbox in face_bboxes:
@@ -163,7 +166,7 @@ def main(args):
                         "flattened_predictions"
                     ]
                     if (
-                        int(count) % 200 == 1
+                        int(count) % 150 == 1
                         and args.enable_speech
                         and float(mask_detected_prob) < args.mask_prob_threshold
                     ):
@@ -171,12 +174,13 @@ def main(args):
 
             if args.debug:
                 text = f"Face Detection Inference time: {face_detect_infer_time:.3f} ms"
-                input_feed.add_text(text, frame, (15, input_feed.source_height - 80))
+                #cv2.putText(frame, text, (30, 30), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 1)
+                #input_feed.add_text(text, frame, (15, input_feed.source_height - 80))
                 text = (
                     f"Face Mask Detection Inference time: {mask_detect_infer_time:.3f} ms"
                 )
-                input_feed.add_text(text, frame, (15, input_feed.source_height - 60))
-
+                #input_feed.add_text(text, frame, (15, input_feed.source_height - 60))
+                #input_feed.add_text(text, frame, (15, input_feed.source_height - 60))
                 input_feed.show(input_feed.resize(frame))
 
     finally:
