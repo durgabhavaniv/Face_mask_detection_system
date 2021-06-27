@@ -26,11 +26,8 @@ OpenVino (OpenVisual Inferencing and Neural Network Optimization) is toolkit to 
 
 ### Tutorial
 
-#### YouTube Tutorial
+[![Watch the video](https://github.com/durgabhavaniv/Face_mask_detection_system/blob/main/resources/output.gif)](https://github.com/durgabhavaniv/Face_mask_detection_system/blob/main/resources/Demo.mp4)
 
-The first of many...
-
-[![Watch the video](https://user-images.githubusercontent.com/7910856/88237923-a8514500-cc80-11ea-9cc8-0692eb0c4d6e.gif)](https://www.youtube.com/watch?v=6r6foGbCHQ0)
 
 ## Hardware Requirement
 
